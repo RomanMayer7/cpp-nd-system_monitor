@@ -5,6 +5,7 @@
 #include <vector>
 #include<iostream>
 
+
 #include "linux_parser.h"
 
 using std::stof;
@@ -198,3 +199,16 @@ string LinuxParser::User(int pid[[maybe_unused]]) { return string(); }
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
 long LinuxParser::UpTime(int pid[[maybe_unused]]) { return 0; }
+
+ string LinuxParser::GetCPURecord()
+ {
+
+  string line;
+  std::ifstream filestream(kProcDirectory+kStatFilename);
+  if (filestream.is_open())
+   {
+       std::getline(filestream, line); //get the first line 
+
+   }
+     return  line;
+ }
