@@ -8,6 +8,8 @@
 #include "processor.h"
 #include "system.h"
 #include "linux_parser.h"
+#include <iostream>
+#include "format.h"
 
 using std::set;
 using std::size_t;
@@ -50,4 +52,9 @@ int System::TotalProcesses()
  }
 
 // TODO: Return the number of seconds since the system started running
-long int System::UpTime() { return 0; }
+long int System::UpTime()
+ { 
+      long int value = LinuxParser::UpTime();
+      //std::cout<<"time:"<<Format::ElapsedTime(value)<<std::endl;
+      return value;
+ }
