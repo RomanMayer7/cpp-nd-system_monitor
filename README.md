@@ -28,4 +28,4 @@ This project uses [Make](https://www.gnu.org/software/make/). The Makefile has f
 ## Starter code 
 Starter code for System Monitor Project was provided by [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). 
 
-https://github.com/udacity/CppND-System-Monitor-Project-Updated.git`
+https://github.com/udacity/CppND-System-Monitor-Project-Updated.git
