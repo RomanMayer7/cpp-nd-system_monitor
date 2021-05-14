@@ -121,7 +121,7 @@ long LinuxParser::IdleJiffies() { return 0; }
 // TODO: Read and return CPU utilization
 vector<string> LinuxParser::CpuUtilization() { return {}; }
 
-// TODO: Read and return the total number of processes
+// DONE: Read and return the total number of processes
 int LinuxParser::TotalProcesses()
  { 
   string line;
@@ -133,8 +133,7 @@ int LinuxParser::TotalProcesses()
     {
       std::istringstream linestream(line);
       linestream >> key >> value;
-      //std::cout<<lineCount<<":"<<"MemMetric:" << MemMetric<<std::endl;
-      //std::cout<<"MemValue:"  << MemValue<<std::endl;
+
       if(key=="processes")
       {  
         return  std::stoi(value);
@@ -144,7 +143,7 @@ int LinuxParser::TotalProcesses()
   return 0;
  }
 
-// TODO: Read and return the number of running processes
+// DONE:  Read and return the number of running processes
 int LinuxParser::RunningProcesses()
  {
   string line;
@@ -154,10 +153,9 @@ int LinuxParser::RunningProcesses()
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) 
     {
-            std::istringstream linestream(line);
+      std::istringstream linestream(line);
       linestream >> key >> value;
-      //std::cout<<lineCount<<":"<<"MemMetric:" << MemMetric<<std::endl;
-      //std::cout<<"MemValue:"  << MemValue<<std::endl;
+
       if(key=="procs_running")
       {  
         return  std::stoi(value);
