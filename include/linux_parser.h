@@ -27,6 +27,7 @@ int RunningProcesses();
 std::string OperatingSystem();
 std::string Kernel();
 std::string GetCPURecord();
+float getCPUutilization(int pid);
 
 // CPU
 enum CPUStates {
