@@ -382,7 +382,7 @@ long LinuxParser::UpTime(int pid)
               // std::cout<<"seconds:"<<seconds<<std::endl;
 
               //Finally we calculate the CPU usage percentage:
-               cpu_usage = ((total_time / Hertz) / seconds)/100;
+               cpu_usage = ((total_time / Hertz) / seconds);
 
               //*********************************************************************************
                 
