@@ -18,6 +18,14 @@ const std::string kVersionFilename{"/version"};
 const std::string kOSPath{"/etc/os-release"};
 const std::string kPasswordPath{"/etc/passwd"};
 
+//String Constants
+const std::string filterProcesses("processes");
+const std::string filterRunningProcesses("procs_running");
+const std::string filterMemTotalString("MemTotal:");
+const std::string filterMemFreeString("MemFree:");
+const std::string filterUID("Uid:");
+const std::string filterProcMem("VmData:"); // The string can be VmSize As well
+
 // System
 float MemoryUtilization();
 long UpTime();

@@ -77,10 +77,8 @@ vector<int> LinuxParser::Pids() {
 // DONE: Read and return the system memory utilization
 float LinuxParser::MemoryUtilization() 
 { 
-  string memTotal = "MemTotal:";
-  string memFree = "MemFree:";
-  float Total = stof(findValueByKey(kProcDirectory,kMeminfoFilename,memTotal));// "/proc/memInfo"
-  float Free = stof(findValueByKey(kProcDirectory,kMeminfoFilename,memFree));
+  float Total = stof(findValueByKey(kProcDirectory,kMeminfoFilename,filterMemTotalString));// "/proc/memInfo"
+  float Free = stof(findValueByKey(kProcDirectory,kMeminfoFilename,filterMemFreeString));
   return (Total - Free) / Total;
 }
 
@@ -118,7 +116,7 @@ int LinuxParser::TotalProcesses()
 
     try
     {
-      _total_processes = stoi(findValueByKey(kProcDirectory,kMeminfoFilename,"processes"));
+      _total_processes = stoi(findValueByKey(kProcDirectory,kMeminfoFilename,filterProcesses));
     }
    catch(std::invalid_argument& e)
     {
@@ -136,7 +134,7 @@ int LinuxParser::RunningProcesses()
     int _running_processes;
     try
     {
-      _running_processes = stoi(findValueByKey(kProcDirectory,kStatFilename,"procs_running"));
+      _running_processes = stoi(findValueByKey(kProcDirectory,kStatFilename,filterRunningProcesses));
     }
    catch(std::invalid_argument& e)
     {
@@ -163,7 +161,7 @@ string LinuxParser::Ram(int pid)
     //instead of using  "VmSize" which gives us memory usage more than our actual Physical RAM size.
     try 
     {
-       _VmData =stoi(findValueByKey(kProcDirectory + to_string(pid),kStatusFilename,"VmData:"));
+       _VmData =stoi(findValueByKey(kProcDirectory + to_string(pid),kStatusFilename,filterProcMem));
     }
     catch(std::invalid_argument& e)
     {
@@ -181,7 +179,7 @@ string LinuxParser::Ram(int pid)
 string LinuxParser::Uid(int pid)
  {
 
-   return  findValueByKey(kProcDirectory + to_string(pid),kStatusFilename,"Uid:");
+   return  findValueByKey(kProcDirectory + to_string(pid),kStatusFilename,filterUID);
 
  }
 
