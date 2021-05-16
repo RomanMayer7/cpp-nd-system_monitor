@@ -34,9 +34,8 @@ bool Process::operator<(Process const& a) const
 {
     return (cpuUtilization > a.cpuUtilization);
 }
-
-Process::Process(int _pid, std::string _user, std::string _cmd, std::string _ram,float _cpu,long _upTime):
-pid(_pid), user(_user) ,command(_cmd), ram(_ram), cpuUtilization(_cpu), upTime(_upTime)
+Process::Process(int _pid, float _cpu, std::string _cmd, std::string _ram, std::string _user, long _upTime):
+pid(_pid), cpuUtilization(_cpu) ,command(_cmd), ram(_ram), user(_user) , upTime(_upTime)
 {
     
 }

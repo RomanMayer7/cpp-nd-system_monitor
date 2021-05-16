@@ -8,23 +8,23 @@ It contains relevant attributes as shown below
 */
 class Process {
  public:
-  int Pid();                              
-  std::string User();                     
-  std::string Command();                  
-  float CpuUtilization();                 
-  std::string Ram();                       
+  int Pid();
+  float CpuUtilization();
+  std::string Command();                                                                                   
+  std::string Ram();
+  std::string User();                        
   long int UpTime();                      
   bool operator<(Process const& a) const;
-  Process(int _pid, std::string _user, std::string _cmd, std::string _ram,float _cpu,long _upTime);
+  Process(int _pid, float _cpu, std::string _cmd, std::string _ram, std::string _user, long _upTime);
 
 
   // private members
  private:
   int pid;
-  std::string user;
-  std::string command;
   float cpuUtilization;
+  std::string command;
   std::string ram;
+  std::string user;
   long int upTime;
 };
 

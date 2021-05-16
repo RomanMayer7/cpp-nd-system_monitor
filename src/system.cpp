@@ -30,13 +30,14 @@ vector<Process>& System::Processes()
 
     for(int _pid :_pids) //Populate "processes_" container
     {
+        float cpuUtilization=LinuxParser::getCPUutilization(_pid);
         string command = LinuxParser::Command(_pid);
         string ram = LinuxParser::Ram(_pid);
         string user = LinuxParser::User(_pid);
         long upTime =LinuxParser::UpTime(_pid);
-        float cpuUtilization=LinuxParser::getCPUutilization(_pid);
+        
 
-        Process process(_pid,user,command,ram,cpuUtilization,upTime);
+        Process process(_pid, cpuUtilization, command, ram, user, upTime);
         processes_.emplace_back(process);
     } 
     //Sort processes objects in "processes_" container by "CPU Usage" 
