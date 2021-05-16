@@ -25,6 +25,9 @@ vector<Process>& System::Processes()
  { 
     vector<int> _pids = LinuxParser::Pids(); //GET pid's
 
+    //clear the container before inserting new entries
+    processes_.clear(); 
+
     for(int _pid :_pids) //Populate "processes_" container
     {
         string command = LinuxParser::Command(_pid);
@@ -34,9 +37,9 @@ vector<Process>& System::Processes()
         float cpuUtilization=LinuxParser::getCPUutilization(_pid);
 
         Process process(_pid,user,command,ram,cpuUtilization,upTime);
-        processes_.push_back(process);
+        processes_.emplace_back(process);
     } 
-
+    //Sort processes objects in "processes_" container by "CPU Usage" 
     std::sort(processes_.begin(), processes_.end());
 
     return processes_; 

@@ -212,10 +212,12 @@ string LinuxParser::Ram(int pid)
        {
          std::istringstream linestream(line);
          linestream >> key >> value;
-
-       if(key=="VmSize:")
+         
+      //Using "VmData" to get exact physical memory being used (as a part of Physical RAM). 
+      //instead of using  "VmSize" which gives us memory usage more than our actual Physical RAM size.
+       if(key=="VmData:")
        {  
-         return value;
+         return to_string((stoi(value))/1024);
        }
       }  
 
@@ -305,11 +307,13 @@ long LinuxParser::UpTime(int pid)
              {
               tokens.push_back(intermediate);
              }
-              // (22) starttime  %llu
-              //divide the "clock ticks" value by sysconf(_SC_CLK_TCK)
-              value = std::stol(tokens.at(21)) / sysconf(_SC_CLK_TCK);
 
-             return  value;      
+              // "(22) starttime  %llu" value from tokens -time the process started after system boot
+              //in order to get the unit of time it has been running since start you need to subtract it from the UpTime() of the system
+              //before substracting we need to divide this "clock ticks" value by sysconf(_SC_CLK_TCK) to get proper units
+              int upTimePid = UpTime() - stol(tokens.at(21))/sysconf(_SC_CLK_TCK);
+
+              return upTimePid;    
        }  
         return  0;
      }
